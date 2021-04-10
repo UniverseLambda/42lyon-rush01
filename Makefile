@@ -45,7 +45,7 @@ clean-dependency:
 	make -C libft/ clean
 
 fclean-dependency:
-	make -C minilibx/ fclean
+	make -C libft/ fclean
 
 re-dependency:
 	make -C libft/ re

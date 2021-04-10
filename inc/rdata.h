@@ -27,7 +27,7 @@ typedef struct	s_rdata
 {
 	size_t		size;		// Size of map
 	char		filler;		// Character used to print the camp
-	uint16_t	*map;		// Levels of the map (height)
+	uint8_t		*map;		// Levels of the map (height)
 	uint16_t	*values;	// Potential square size for each cases
 
 	t_square	max_square;	// During research, the biggest square currently found
