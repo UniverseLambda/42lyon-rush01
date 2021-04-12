@@ -29,9 +29,11 @@ typedef struct s_rdata
 	uint8_t		*map;
 	uint16_t	*values;
 
+	uint16_t	biggest_value;
 	t_square	max_square;
 }				t_rdata;
 
 void			start(t_rdata *rush);
+int				check_ring(t_rdata *rush, size_t index, size_t ring_size);
 
 #endif // RDATA_H

@@ -48,18 +48,6 @@ int	read_data(t_rdata *data)
 	return (1);
 }
 
-void	conv_map(t_rdata *data)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < (data->size * data->size))
-	{
-		data->map[i] -= '0';
-		i++;
-	}
-}
-
 int	main(int argc, char **argv)
 {
 	t_rdata	data;
@@ -71,8 +59,8 @@ int	main(int argc, char **argv)
 		write(STDERR_FILENO, "internal error\n", 15);
 		return (1);
 	}
-	conv_map(&data);
 	data.max_square.size = 0;
+	data.biggest_value = 0;
 	data.max_square.pos = 0;
 	start(&data);
 	return (0);
