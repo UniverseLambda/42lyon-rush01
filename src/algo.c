@@ -14,7 +14,7 @@ int	check_square(t_rdata *rush, size_t index)
 			break ;
 		++ring;
 	}
-	if (rush->max_square.size < (ring + 1))
+	if (rush->max_square.size < ring)
 	{
 		rush->max_square.pos = index;
 		rush->max_square.size = ring;
