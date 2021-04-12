@@ -9,7 +9,7 @@ AR ?= ar
 RM ?= rm
 
 CFLAGS ?=
-CFLAGS := $(CFLAGS) -fsanitize=address -glldb -Wall -Wextra -Werror -Iinc -Ilibft/inc
+CFLAGS := $(CFLAGS) -Wall -Wextra -Werror -Iinc -Ilibft/inc
 
 BUILD_TYPE := release
 
@@ -18,7 +18,7 @@ OBJS := src/main.o src/algo.o src/algo_utils.o
 all: all-dependency $(NAME)
 
 $(NAME): dependency $(OBJS)
-	$(CC) $(LDFLAGS) -fsanitize=address -o $(NAME) $(OBJS) libft/libft.a
+	$(CC) $(LDFLAGS) -o $(NAME) $(OBJS) libft/libft.a
 
 %.o: %.c libft.h
 	$(CC) $(CFLAGS) -o $@ -c $<
