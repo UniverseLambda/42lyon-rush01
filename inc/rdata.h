@@ -16,21 +16,22 @@
 # include <stdint.h>
 # include <stddef.h>
 
-typedef struct	s_square
+typedef struct s_square
 {
-	size_t		start_x;
-	size_t		start_y;
+	size_t		pos;
 	size_t		size;
 }				t_square;
 
-typedef struct	s_rdata
+typedef struct s_rdata
 {
-	size_t		size;		// Size of map
-	char		filler;		// Character used to print the camp
-	uint8_t		*map;		// Levels of the map (height)
-	uint16_t	*values;	// Potential square size for each cases
+	size_t		size;
+	char		filler;
+	uint8_t		*map;
+	uint16_t	*values;
 
-	t_square	max_square;	// During research, the biggest square currently found
+	t_square	max_square;
 }				t_rdata;
+
+void			start(t_rdata *rush);
 
 #endif // RDATA_H

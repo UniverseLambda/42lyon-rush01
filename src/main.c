@@ -23,15 +23,17 @@ int	read_data(t_rdata *data)
 {
 	char		buffer[1024];
 	size_t		i;
-	ssize_t		rdcount;
 
-	rdcount = read(STDIN_FILENO, buffer, 1024);
-	buffer[rdcount] = '\0';
+	i = 0;
+	while (1)
+		if (read(STDIN_FILENO, buffer + i, 1) != 1 || buffer[i++] == '\n')
+			break ;
+	buffer[i] = '\0';
 	data->size = ft_atoi(buffer);
-	data->map = malloc(data->size * data->size);
+	data->map = ft_calloc(data->size * data->size, sizeof(*(data->map)));
 	if (data->map == NULL)
 		return (0);
-	data->values = malloc(data->size * data->size);
+	data->values = ft_calloc(data->size * data->size, sizeof(*(data->values)));
 	if (data->map == NULL)
 	{
 		free(data->map);
@@ -39,13 +41,10 @@ int	read_data(t_rdata *data)
 	}
 	read(STDIN_FILENO, buffer, 2);
 	data->filler = buffer[0];
-	i = 0;
-	while (i < data->size)
-	{
-		read(STDIN_FILENO,
-			&data->map[i * data->size], data->size + (i != (data->size - 1)));
-		++i;
-	}
+	i = -1;
+	while (++i < data->size)
+		read(STDIN_FILENO, &data->map[i * data->size],
+			(data->size + (i != (data->size - 1))));
 	return (1);
 }
 
@@ -53,7 +52,7 @@ void	conv_map(t_rdata *data)
 {
 	size_t	i;
 
-	i  = 0;
+	i = 0;
 	while (i < (data->size * data->size))
 	{
 		data->map[i] -= '0';
@@ -74,7 +73,7 @@ int	main(int argc, char **argv)
 	}
 	conv_map(&data);
 	data.max_square.size = 0;
-	data.max_square.start_x = 0;
-	data.max_square.start_y = 0;
+	data.max_square.pos = 0;
+	start(&data);
 	return (0);
 }

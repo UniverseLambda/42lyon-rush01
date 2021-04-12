@@ -9,16 +9,16 @@ AR ?= ar
 RM ?= rm
 
 CFLAGS ?=
-CFLAGS := $(CFLAGS) -Wall -Wextra -Werror -Iinc -Ilibft/inc
+CFLAGS := $(CFLAGS) -fsanitize=address -glldb -Wall -Wextra -Werror -Iinc -Ilibft/inc
 
 BUILD_TYPE := release
 
-OBJS := src/main.o
+OBJS := src/main.o src/algo.o src/algo_utils.o
 
 all: all-dependency $(NAME)
 
 $(NAME): dependency $(OBJS)
-	$(CC) $(LDFLAGS) -o $(NAME) $(OBJS) libft/libft.a
+	$(CC) $(LDFLAGS) -fsanitize=address -o $(NAME) $(OBJS) libft/libft.a
 
 %.o: %.c libft.h
 	$(CC) $(CFLAGS) -o $@ -c $<
@@ -33,6 +33,12 @@ re: fclean all
 
 debug:	BUILD_TYPE := debug
 debug:	all
+
+test: all
+	cat tmp/map_test
+	@echo ""
+	@echo "============="
+	cat tmp/map_test | ./$(NAME)
 
 # DEPENDENCIES TARGET
 
@@ -49,3 +55,4 @@ fclean-dependency:
 
 re-dependency:
 	make -C libft/ re
+

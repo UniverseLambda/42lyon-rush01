@@ -18,7 +18,7 @@ void	*set_ptr(void *target, void *value)
 	return (value);
 }
 
-int		set_i(int *target, int value)
+int	set_i(int *target, int value)
 {
 	*target = value;
 	return (value);
