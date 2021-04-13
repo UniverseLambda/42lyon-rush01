@@ -63,5 +63,7 @@ int	main(int argc, char **argv)
 	data.biggest_value = 0;
 	data.max_square.pos = 0;
 	start(&data);
+	free(data.map);
+	free(data.values);
 	return (0);
 }
