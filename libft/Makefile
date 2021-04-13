@@ -2,7 +2,7 @@
 .PHONY: all clean fclean re
 .SUFFIXES: .c .o
 
-NAME := libft.a
+RESULT_NAME := libft.a
 
 CC ?= cc
 AR ?= ar
@@ -84,10 +84,10 @@ OBJS := src/base/ft_atoi.o \
 		src/norm/set_and_ret.o \
 		src/norm/tern.o
 
-all: $(NAME)
+all: $(RESULT_NAME)
 
-$(NAME): $(OBJS)
-	$(AR) rcs $(NAME) $(OBJS)
+$(RESULT_NAME): $(OBJS)
+	$(AR) rcs $(RESULT_NAME) $(OBJS)
 
 %.o: %.c $(INCLUDES)
 	$(CC) $(CFLAGS) -o $@ -c $<
@@ -96,6 +96,6 @@ clean:
 	rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(RESULT_NAME)
 
 re: fclean all
